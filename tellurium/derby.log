@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Tue May 16 12:09:22 PDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015c-12aa-30a5-000016fd6768 
+on database directory /home/shaik/dest/tellurium/tellurium/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@70e4dfae 
+Loaded from file:/home/shaik/Downloads/spark-2.1.0-bin-hadoop2.7/jars/derby-10.12.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_111-b16
+user.dir=/home/shaik/dest/tellurium/tellurium
+os.name=Linux
+os.arch=amd64
+os.version=4.8.13-100.fc23.x86_64
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
