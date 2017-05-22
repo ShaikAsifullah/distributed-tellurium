@@ -8,6 +8,10 @@ from __future__ import print_function, division, absolute_import
 import os
 import sys
 import warnings
+import matplotlib
+
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 # check availability of property cycler (matplotlib 1.5ish)
 # if True: # create dummy scope
@@ -275,6 +279,9 @@ def sample_plot(result):
     plt.legend()
     plt.show()
 
+def plotImage(img):
+    imgplot = plt.imshow(img)
+    plt.show()
 
 
 def distributed_parameter_scanning(sc,list_of_models, function_name):
@@ -282,7 +289,7 @@ def distributed_parameter_scanning(sc,list_of_models, function_name):
         import tellurium as te
         model_roadrunner = te.loada(model_with_parameters[0])
         parameter_scan_initilisation = te.ParameterScan(model_roadrunner,**model_with_parameters[1])
-        simulator = getattr(parameter_scan_initilisation, "collect_"+function_name+"_result")
+        simulator = getattr(parameter_scan_initilisation, function_name)
         return(simulator())
         
     return(sc.parallelize(list_of_models,len(list_of_models)).map(spark_work).collect())

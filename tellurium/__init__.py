@@ -23,7 +23,7 @@ from .tellurium import (
 
 #Other 
 from .tellurium import (
-    distributed_parameter_scanning,sample_plot )
+    distributed_parameter_scanning,sample_plot,plotImage )
 
 # Model import
 from .tellurium import (

@@ -4,12 +4,13 @@ Utility classes for parameter scans.
 from __future__ import print_function, division
 import numpy as np
 import matplotlib
-
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.collections import PolyCollection
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.ticker import LinearLocator, FormatStrFormatter
-
+import matplotlib.image as mpimg
+import uuid
 
 class ParameterScan (object):
     """ ParameterScan """
@@ -92,12 +93,12 @@ class ParameterScan (object):
 
     def plotArrayFunction(self,result):
 
+
         if self.color is None:
             for species in self.rr.timeCourseSelections[1:]:
                 plt.plot(result[:, 0], result[species],
                          linewidth=self.width, label=species)
         else:
-            print(result.shape)
             if len(self.color) != result.shape[1]:
                 self.color = self.colorCycle()
             for i in range(result.shape[1] - 1):
@@ -116,7 +117,12 @@ class ParameterScan (object):
             plt.suptitle(self.title)
         if self.legend:
             plt.legend()
-        plt.show()
+        #plt.show()
+        FILENAME = str(uuid.uuid4())+".png"
+        plt.savefig(FILENAME)
+        #plt.close()
+        imag = mpimg.imread(FILENAME)
+        return(imag)
 
     def plotArray(self):
         """ Plots result of simulation with options for linewdith and line color.
@@ -124,7 +130,7 @@ class ParameterScan (object):
         p.plotArray()
         """
         result = self._sim()
-        self.plotArrayFunction(result)
+        return(self.plotArrayFunction(result))
 
 
 
