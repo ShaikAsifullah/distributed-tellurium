@@ -120,7 +120,7 @@ class ParameterScan (object):
         #plt.show()
         FILENAME = str(uuid.uuid4())+".png"
         plt.savefig(FILENAME)
-        #plt.close()
+        plt.close()
         imag = mpimg.imread(FILENAME)
         return(imag)
 
@@ -239,7 +239,12 @@ class ParameterScan (object):
             plt.ylabel(self.ylabel)
         if self.legend:
             plt.legend()
-        plt.show()
+        #plt.show()
+        FILENAME = str(uuid.uuid4()) + ".png"
+        plt.savefig(FILENAME)
+        plt.close()
+        imag = mpimg.imread(FILENAME)
+        return(imag)
 
     def plotGraduatedArray(self):
         """Plots array with either default multiple colors or user sepcified colors using
@@ -247,7 +252,7 @@ class ParameterScan (object):
 
         p.plotGraduatedArray()"""
         result = self._graduatedSim()
-        self.plotGraduatedArrayFunction(result)
+        return(self.plotGraduatedArrayFunction(result))
 
     def plotPolyArrayFunction(self,result):
         interval = ((self.endValue - self.startValue) / (self.polyNumber - 1))
@@ -300,7 +305,12 @@ class ParameterScan (object):
             #        ax.set_zlabel(self.value) if self.zlabel is None else ax.set_zlabel(self.zlabel)
         if self.title is not None:
             ax.set_title(self.title)
-        plt.show()
+        #plt.show()
+        FILENAME = str(uuid.uuid4()) + ".png"
+        plt.savefig(FILENAME)
+        plt.close()
+        imag = mpimg.imread(FILENAME)
+        return(imag)
 
     def collect_plotPolyArray_result(self):
         result = self._graduatedSim()
@@ -312,7 +322,7 @@ class ParameterScan (object):
 
         p.plotPolyArray()"""
         result = self._graduatedSim()
-        self.plotPolyArrayFunction(result)
+        return(self.plotPolyArrayFunction(result))
 
 
     def plotSurface(self):
@@ -403,7 +413,12 @@ class ParameterScan (object):
             if self.colorbar:
                 fig.colorbar(surf, shrink=0.5, aspect=4)
     
-            plt.show()
+            #plt.show()
+            FILENAME = str(uuid.uuid4()) + ".png"
+            plt.savefig(FILENAME)
+            plt.close()
+            imag = mpimg.imread(FILENAME)
+            return(imag)
         
         except Exception as e:
             print('error: {0}'.format(e.message))
@@ -648,4 +663,5 @@ def plot2DParameterScan(r, p1, p1Range, p2, p2Range, start=0, end=100, points=10
                 axarr[i, j].set_ylabel('%s = %.2f' % (p1, k1))
 
     f.show()
+
 
